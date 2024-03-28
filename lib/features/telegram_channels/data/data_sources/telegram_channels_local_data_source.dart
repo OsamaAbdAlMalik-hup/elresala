@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:elresala/core/constants/app_keys.dart';
 import 'package:elresala/core/services/archive_service.dart';
 import 'package:elresala/core/services/shared_preferences_service.dart';
@@ -19,7 +20,7 @@ class TelegramChannelsModelLocalDataSourceImpl
     required this.sharedPreferencesService,
     required this.archiveService,
   });
-  
+
   @override
   Future<TelegramChannels> getTelegramChannels() async {
     try {
@@ -29,9 +30,8 @@ class TelegramChannelsModelLocalDataSourceImpl
       String? fileContent =
           await archiveService.readFile(name: AppKeys.telegram);
       // Call the readFile method
-      Map<String, dynamic> jsonData =
-          json.decode(fileContent!)["telegram-channels"];
-      //  Map<String, dynamic> telegramChannels = jsonData["telegram-channels"];
+       Map<String, dynamic> jsonData = json.decode(fileContent!);
+        jsonData['ahlulsunnahve'];
       TelegramChannels channelsModel = TelegramChannels.fromJson(jsonData);
       Get.find<Logger>().w(
           "End `getTelegramChannels` in |TelegramChannelsModelLocalDataSourceImpl|");
@@ -44,8 +44,3 @@ class TelegramChannelsModelLocalDataSourceImpl
     }
   }
 }
-
-
-
-
-

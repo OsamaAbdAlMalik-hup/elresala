@@ -1,64 +1,41 @@
-// لما أستخدم المودل دا ببيظهرلي List<dynamic> is not subtype of Map<String,dynamic> لذلك إستغنيت عنه
-// class TelegramChannelsModel {
-//   TelegramChannels telegramChannels;
-//   IslamHousePhotos islamHousePhotos;
- 
-//   TelegramChannelsModel(
-//       {required this.telegramChannels, required this.islamHousePhotos});
 
-//   factory TelegramChannelsModel.fromJson(Map<String, dynamic> json) {
-//     return TelegramChannelsModel(
-//       telegramChannels: TelegramChannels.fromJson(json['telegram-channels']),
-//       islamHousePhotos: IslamHousePhotos.fromJson(json['sp-islamhouse-photos']),
-//     );
-//   }
-// }
+class TelegramChannels {
+  Map<String, TelegramChannel> telegramChannels;
+  TelegramChannels({required this.telegramChannels});
+  factory TelegramChannels.fromJson(Map<String, dynamic> json) {
+    Map<String, TelegramChannel> channels = {};
 
-class TelegramChannelsController extends GetxController {
-  // Data
-  TelegramChannels? channelsModel;
-  List channelsNames = [];
-  List<TelegramChannel> channelMessagesList = [];
-  // States
-  StateType getTelegramChannelsState = StateType.init;
-  // Primitive
-  String validationMessage = '';
+    json.forEach((key, value) {
+      channels[key] = TelegramChannel.fromJson(key, value);
+    });
 
-  @override
-  void onInit() async {
-    Get.find<Logger>().i("Start onInit TelebgramChannelsController");
-    super.onInit();
-    await getTelegramChannels();
-    Get.find<Logger>().w("End onInit TelegramChannelsController");
+    return TelegramChannels(telegramChannels: channels);
   }
+}
+class TelegramChannel {
+  final String name;
+  final String link;
+  final Map<String, String> messages;
 
-  Future<void> getTelegramChannels() async {
-    Get.find<Logger>()
-        .i("Start `getTelegramChannels` in |TelegramChannelsController|");
-    getTelegramChannelsState = StateType.loading;
-    update();
-    GetTelegramChannelsUseCase getTelegramChannelsUseCase =
-        GetTelegramChannelsUseCase(Get.find());
-    var result = await getTelegramChannelsUseCase();
-    result.fold(
-      (l) async {
-        getTelegramChannelsState = getStateFromFailure(l);
-        validationMessage = l.message;
-        update();
-        await Future.delayed(const Duration(milliseconds: 50));
-        getTelegramChannelsState = StateType.init;
-      },
-      (r) {
-        getTelegramChannelsState = StateType.success;
-        channelsModel = r;
-        channelsModel?.telegramChannels.forEach((channelName, channelMessages) {
-          channelsNames.add(channelName);
-          channelMessagesList.add(channelMessages);
-        });
-        update();
-      },
+  TelegramChannel({
+    required this.name,
+    required this.link,
+    required this.messages,
+  });
+
+  factory TelegramChannel.fromJson(String name, Map<String, dynamic> json) {
+      final String link = json['link'] ?? '';
+    return TelegramChannel(
+      name: name,
+      link: link,
+      messages: Map<String, String>.from(json),
     );
-    Get.find<Logger>().w(
-        "End `getTelegramChannels` in |TelegramChannelsController| $getTelegramChannelsState");
+  }
+}
+class IslamHousePhotos {
+  Map<String, String> photos;
+  IslamHousePhotos({required this.photos});
+  factory IslamHousePhotos.fromJson(Map<String, dynamic> json) {
+    return IslamHousePhotos(photos: json.cast<String, String>());
   }
 }
