@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController> {
+class TelegramChannelsMessagesScreen
+    extends GetView<TelegramChannelsController> {
   final TelegramChannel channelMessages;
   final String channelName;
 
@@ -58,7 +59,9 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: TelegramMessagesSearcDelegate(channelMessages: channelMessages.messages.values.toList()),
+                  delegate: TelegramMessagesSearcDelegate(
+                      channelMessages:
+                          channelMessages.messages.values.toList()),
                 );
               },
               icon: const Icon(Icons.search))
@@ -66,7 +69,7 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        reverse: true,
+        // reverse: true,
         itemCount: channelMessages.messages.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
@@ -81,11 +84,24 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
             child: Column(
               children: [
                 ListTile(
-                  title: Text(
-                    channelMessages.messages.values.toList().reversed.toList()[index],
-                    style: Styles.textStyle14Golden,
-                  ),
-                ),
+                    title: Text(
+                      channelMessages.messages.values
+                          .toList()
+                          .reversed
+                          .toList()[index],
+                      style: Styles
+                          .textStyle14, //يجب اضافة هذا الاستايل    static const textStyle14 = TextStyle( color: AppColors.kWhiteColor, fontSize: 14,fontWeight: FontWeight.w500,);
+                    ),
+                    leading: CircleAvatar(
+                      backgroundColor: AppColors.kGreenColor,
+
+                      child: Text(
+                        (index + 1).toString(),
+                        style: const TextStyle(
+                          color: AppColors.kWhiteColor,
+                        ),
+                      ), // ترقيم تلقائي
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

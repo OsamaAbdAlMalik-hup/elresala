@@ -57,6 +57,11 @@ abstract class Styles {
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
+  static const textStyle14 = TextStyle(
+    color: AppColors.kWhiteColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
   static const textStyle12 = TextStyle(
     color: AppColors.kWhiteColor,
     fontSize: 12,
