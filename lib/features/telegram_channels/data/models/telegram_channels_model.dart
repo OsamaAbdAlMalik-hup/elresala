@@ -1,4 +1,3 @@
-
 class TelegramChannels {
   Map<String, TelegramChannel> telegramChannels;
   TelegramChannels({required this.telegramChannels});
@@ -12,6 +11,7 @@ class TelegramChannels {
     return TelegramChannels(telegramChannels: channels);
   }
 }
+
 class TelegramChannel {
   final String name;
   final String link;
@@ -24,7 +24,7 @@ class TelegramChannel {
   });
 
   factory TelegramChannel.fromJson(String name, Map<String, dynamic> json) {
-      final String link = json['link'] ?? '';
+    final String link = json['link'] ?? '';
     return TelegramChannel(
       name: name,
       link: link,
@@ -32,6 +32,7 @@ class TelegramChannel {
     );
   }
 }
+
 class IslamHousePhotos {
   Map<String, String> photos;
   IslamHousePhotos({required this.photos});

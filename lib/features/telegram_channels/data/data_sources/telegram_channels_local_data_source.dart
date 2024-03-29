@@ -30,8 +30,8 @@ class TelegramChannelsModelLocalDataSourceImpl
       String? fileContent =
           await archiveService.readFile(name: AppKeys.telegram);
       // Call the readFile method
-       Map<String, dynamic> jsonData = json.decode(fileContent!);
-        jsonData['ahlulsunnahve'];
+      Map<String, dynamic> jsonData = json.decode(fileContent!);
+      jsonData['ahlulsunnahve'];
       TelegramChannels channelsModel = TelegramChannels.fromJson(jsonData);
       Get.find<Logger>().w(
           "End `getTelegramChannels` in |TelegramChannelsModelLocalDataSourceImpl|");

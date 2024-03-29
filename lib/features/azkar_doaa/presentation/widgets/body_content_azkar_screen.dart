@@ -18,10 +18,15 @@ class BodyContentAzkarScreen extends GetView<AzkarDoaaController> {
   @override
   Widget build(BuildContext context) {
     List<ZikrModel> azkar = Get.arguments["data"];
-    return PopScope(
-      onPopInvoked: (didPop) {
-        controller.currentPage.value = 0;
-      },
+    // return PopScope(
+    //   onPopInvoked: (didPop) {
+    //     controller.currentPage.value = 0;
+    //   },
+        return WillPopScope(
+  onWillPop: () async {
+    controller.currentPage.value=0;
+    return true;
+  },
       child: SliverToBoxAdapter(
         child: SingleChildScrollView(
           child: Column(
