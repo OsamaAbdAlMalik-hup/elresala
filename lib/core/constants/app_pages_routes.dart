@@ -6,8 +6,8 @@ import 'package:elresala/features/azkar_doaa/azkar_doaa_bindings.dart';
 import 'package:elresala/features/azkar_doaa/presentation/screens/azkar_doaa_screen.dart';
 import 'package:elresala/features/azkar_doaa/presentation/screens/content_azkar_doaa_screen.dart';
 import 'package:elresala/features/hadith/hadith_bindings.dart';
-import 'package:elresala/features/hadith/presentation/screens/hadith_screen.dart';
 import 'package:elresala/features/hadith/presentation/screens/book_hadithes_screen.dart';
+import 'package:elresala/features/hadith/presentation/screens/hadith_screen.dart';
 import 'package:elresala/features/hadith/presentation/screens/sub_category_screen.dart';
 import 'package:elresala/features/main/main_bindings.dart';
 import 'package:elresala/features/main/presentation/screens/main_screen.dart';
@@ -19,6 +19,8 @@ import 'package:elresala/features/quran/presentation/screens/quran_screen.dart';
 import 'package:elresala/features/quran/presentation/screens/surah_screen.dart';
 import 'package:elresala/features/quran/presentation/screens/telawa_screen.dart';
 import 'package:elresala/features/quran/quran_bindings.dart';
+import 'package:elresala/features/sites/bindings/knowingallah_banding.dart';
+import 'package:elresala/features/sites/presentation/screen/knowingAllah/knowing_allah_main.dart';
 import 'package:get/get.dart';
 
 import '../../features/hadith/presentation/screens/content_hadith_screen.dart';
@@ -89,6 +91,7 @@ abstract class AppPagesRoutes {
   static const String subCategoryScreen = "/sub_category_screen";
 
   ///////////////////////// name routs site ////////////////////////
+  static const String knowingallah = "/knowingallah_screen";
   static const String islamHouse = "/islam_house_screen";
   static const String islamWeb = "/islam_web_screen";
   static const String islamMessage = "/islam_message_screen";
@@ -177,6 +180,12 @@ abstract class AppPagesRoutes {
       name: islamLand,
       page: () => const IslamLandMainScreen(),
       binding: IslamLandBindings(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: knowingallah,
+      page: () => const KnowingAllahMainScreen(),
+      binding: KnowingAllahindings(),
       transition: Transition.cupertino,
     ),
     GetPage(
