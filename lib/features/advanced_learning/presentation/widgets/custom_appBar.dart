@@ -32,18 +32,18 @@ class Custom_AppBar extends StatelessWidget {
           : DirectionAware(
               // من شان تدوير الايقونة بزاوية 90
               //DirectionAware for rotate the icon to other side rtl or ltr
-              child: GestureDetector(
-                onTap: _navigatorBack,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 25,
-                  ),
-                  child: SvgPicture.asset(
-                    AppAssets.kBackIcon,
-                    color: iconColor,
-                  ),
+              child: IconButton(
+                onPressed: _navigatorBack,
+                // child: Padding(
+                //   padding: const EdgeInsets.only(
+                //     left: 10,
+                //     right: 25,
+                //   ),
+                icon: SvgPicture.asset(
+                  AppAssets.kBackIcon,
+                  color: AppColors.kWhiteColor,
                 ),
+                // ),
               ),
             ),
       centerTitle: true,

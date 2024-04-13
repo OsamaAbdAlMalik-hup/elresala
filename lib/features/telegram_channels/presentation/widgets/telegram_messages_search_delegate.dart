@@ -72,7 +72,7 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
       builder: (context) {
         if (query == '') {
           return Scaffold(
-            backgroundColor: AppColors.kWhiteColor,
+            backgroundColor: AppColors.kPrimaryColor,
             body: ListView.builder(
               //  reverse: true,
               itemCount: channelMessages.length,
@@ -101,7 +101,7 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
                             onPressed: () {},
                             icon: IconButton(
                               icon: SvgPicture.asset(
-                                AppAssets.kCopyIcon,
+                                AppAssets.copy,
                               ),
                               onPressed: () {},
                             ),
@@ -110,7 +110,7 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
                             onPressed: () {},
                             icon: IconButton(
                               icon: SvgPicture.asset(
-                                AppAssets.kShareIcon,
+                                AppAssets.share,
                                 color: AppColors.kGoldenColor,
                               ),
                               onPressed: () {},
@@ -125,9 +125,11 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
             ),
           );
         } else {
-          channelFilterdMessages = channelMessages.where((element) => element.contains(query)).toList();
+          channelFilterdMessages = channelMessages
+              .where((element) => element.contains(query))
+              .toList();
           return Scaffold(
-            backgroundColor: AppColors.kWhiteColor,
+            backgroundColor: AppColors.kPrimaryColor,
             body: ListView.builder(
               //  reverse: true,
               itemCount: channelFilterdMessages!.length,
@@ -156,7 +158,7 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
                             onPressed: () {},
                             icon: IconButton(
                               icon: SvgPicture.asset(
-                                AppAssets.kCopyIcon,
+                                AppAssets.copy,
                               ),
                               onPressed: () {},
                             ),
@@ -165,7 +167,7 @@ class TelegramMessagesSearcDelegate extends SearchDelegate {
                             onPressed: () {},
                             icon: IconButton(
                               icon: SvgPicture.asset(
-                                AppAssets.kShareIcon,
+                                AppAssets.share,
                                 color: AppColors.kGoldenColor,
                               ),
                               onPressed: () {},

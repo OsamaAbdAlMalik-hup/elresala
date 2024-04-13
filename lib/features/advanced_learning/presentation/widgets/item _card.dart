@@ -9,10 +9,9 @@ import 'pub_up_custom.dart';
 
 class Item_Card extends StatelessWidget {
   final String titleSite;
-  const Item_Card({
-    super.key,
-    required this.titleSite,
-  });
+  String subtitle;
+  Item_Card(
+      {super.key, required this.titleSite, this.subtitle = 'Learning Islam'});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +29,12 @@ class Item_Card extends StatelessWidget {
                 ),
                 title: Text(
                   titleSite,
+                  maxLines: 1,
                   style: Styles.textStyle18Godlen,
                 ),
-                subtitle: const Text(
-                  'Learning Islam',
-                  style: TextStyle(color: Colors.white),
+                subtitle: Text(
+                  subtitle,
+                  style: const TextStyle(color: Colors.white),
                 ),
                 trailing: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

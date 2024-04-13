@@ -14,51 +14,41 @@
 //   }
 // }
 
-class TelegramChannelsController extends GetxController {
-  // Data
-  TelegramChannels? channelsModel;
-  List channelsNames = [];
-  List<TelegramChannel> channelMessagesList = [];
-  // States
-  StateType getTelegramChannelsState = StateType.init;
-  // Primitive
-  String validationMessage = '';
-
-  @override
-  void onInit() async {
-    Get.find<Logger>().i("Start onInit TelebgramChannelsController");
-    super.onInit();
-    await getTelegramChannels();
-    Get.find<Logger>().w("End onInit TelegramChannelsController");
+class TelegramChannels {
+  Map<String, TelegramChannel> telegramChannels;
+  TelegramChannels({required this.telegramChannels});
+  factory TelegramChannels.fromJson(dynamic json) {
+    if (json is List) {
+      // Handle list structure
+      Map<String, TelegramChannel> channels = {};
+      for (var item in json) {
+        // Create TelegramChannel from list item
+        channels[item['channelName']] = TelegramChannel.fromJson(item);
+      }
+      return TelegramChannels(telegramChannels: channels);
+    } else {
+      // Handle existing map structure
+      Map<String, TelegramChannel> channels = {};
+      json.forEach((key, value) {
+        channels[key] = TelegramChannel.fromJson(value);
+      });
+      return TelegramChannels(telegramChannels: channels);
+    }
   }
+}
 
-  Future<void> getTelegramChannels() async {
-    Get.find<Logger>()
-        .i("Start `getTelegramChannels` in |TelegramChannelsController|");
-    getTelegramChannelsState = StateType.loading;
-    update();
-    GetTelegramChannelsUseCase getTelegramChannelsUseCase =
-        GetTelegramChannelsUseCase(Get.find());
-    var result = await getTelegramChannelsUseCase();
-    result.fold(
-      (l) async {
-        getTelegramChannelsState = getStateFromFailure(l);
-        validationMessage = l.message;
-        update();
-        await Future.delayed(const Duration(milliseconds: 50));
-        getTelegramChannelsState = StateType.init;
-      },
-      (r) {
-        getTelegramChannelsState = StateType.success;
-        channelsModel = r;
-        channelsModel?.telegramChannels.forEach((channelName, channelMessages) {
-          channelsNames.add(channelName);
-          channelMessagesList.add(channelMessages);
-        });
-        update();
-      },
-    );
-    Get.find<Logger>().w(
-        "End `getTelegramChannels` in |TelegramChannelsController| $getTelegramChannelsState");
+class TelegramChannel {
+  Map<String, String> messages;
+  TelegramChannel({required this.messages});
+  factory TelegramChannel.fromJson(Map<String, dynamic> json) {
+    return TelegramChannel(messages: json.cast<String, String>());
+  }
+}
+
+class IslamHousePhotos {
+  Map<String, String> photos;
+  IslamHousePhotos({required this.photos});
+  factory IslamHousePhotos.fromJson(Map<String, dynamic> json) {
+    return IslamHousePhotos(photos: json.cast<String, String>());
   }
 }

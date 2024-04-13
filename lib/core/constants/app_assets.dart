@@ -60,6 +60,8 @@ abstract class AppAssets {
   static const String calenderIcon = '$rootSVGIcon/calender_date_icon.svg';
   static const String azkarIcon = '$rootSVGIcon/azkar_icon_book_open_fill.svg';
   static const String duaIcon = '$rootSVGIcon/dua-hands_image.svg';
+  static const String copy = '$rootSVGIcon/copy.svg';
+  static const String share = '$rootSVGIcon/share.svg';
 
   //
   static const String rootSvgImages = 'assets/svg/images';

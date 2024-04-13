@@ -19,7 +19,7 @@ class TelegramChannelsScreen extends StatelessWidget {
       init: TelegramChannelsController(),
       builder: (controller) {
         return Scaffold(
-          backgroundColor: AppColors.kWhiteColor,
+          backgroundColor: AppColors.kPrimaryColor,
           appBar: AppBar(
             elevation: 0,
             leading: !Navigator.canPop(context)
@@ -42,10 +42,6 @@ class TelegramChannelsScreen extends StatelessWidget {
                     ),
                   ),
             backgroundColor: AppColors.kPrimaryColor,
-            title: const Text(
-              'Telegram Channels',
-              style: Styles.textStyle18Godlen,
-            ),
             actions: [
               IconButton(
                 onPressed: () {
@@ -63,58 +59,71 @@ class TelegramChannelsScreen extends StatelessWidget {
           ),
           body: HandleStatesWidget(
             stateType: controller.getTelegramChannelsState,
-            child: ListView.builder(
-              itemCount: controller.channelsNames.length,
-              shrinkWrap: true,
-              primary: false,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Get.to(
-                      () => TelegramChannelsMessagesScreen(
-                        channelMessages:
-                            controller.channelMessagesList[index],
-                        channelName: controller.channelsNames[index],
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 0,
-                    color: AppColors.kGreenColor,
-                    child: ListTile(
-                      //  isThreeLine: true,
-                      title: Text(
-                        controller.channelsNames[index],
-                        style: Styles.textStyle18Golden,
-                      ),
-                      leading: const CircleAvatar(
-                        backgroundImage:
-                            AssetImage('assets/svg/images/zaghrafa.png'),
-                        backgroundColor: AppColors.kGreenColor,
-                      ),
-                      subtitle: Text(
-                        '${controller.channelMessagesList[index].messages.values.toList().last} Messages',
-                        maxLines: 2,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      trailing: Container(
-                        height: 20,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColors.kPrimaryColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '${controller.channelMessagesList[index].messages.length}',
+            child: ListView(
+              children: [
+                const ListTile(
+                  leading: Text(
+                    'Groups',
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.kGoldenColor),
+                  ),
+                ),
+                ListView.builder(
+                  itemCount: controller.channelsNames.length,
+                  shrinkWrap: true,
+                  primary: false,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(
+                          () => TelegramChannelsMessagesScreen(
+                            channelMessages:
+                                controller.channelMessagesList[index],
+                            channelName: controller.channelsNames[index],
+                          ),
+                        );
+                      },
+                      child: Card(
+                        elevation: 0,
+                        color: AppColors.kPrimaryColor,
+                        child: ListTile(
+                          //  isThreeLine: true,
+                          title: Text(
+                            controller.channelsNames[index],
+                            style: Styles.textStyle18White,
+                          ),
+                          leading: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/svg/images/zaghrafa.png'),
+                            backgroundColor: AppColors.kGreenColor,
+                          ),
+                          subtitle: Text(
+                            '${controller.channelMessagesList[index].messages.values.toList().last} Messages',
+                            maxLines: 2,
                             style: const TextStyle(color: Colors.white),
+                          ),
+                          trailing: Container(
+                            height: 20,
+                            width: 35,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.kGreenColor,
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${controller.channelMessagesList[index].messages.length}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              },
+                    );
+                  },
+                )
+              ],
             ),
           ),
         );

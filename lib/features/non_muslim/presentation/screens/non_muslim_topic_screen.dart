@@ -7,6 +7,8 @@ import 'package:elresala/features/non_muslim/presentation/screens/non_muslim_sub
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../advanced_learning/presentation/widgets/custom_appBar.dart';
+
 class NonMuslimTopicsScreen extends GetView<NonMuslimController> {
   final List<IslamTopic> topics;
   final String title;
@@ -19,11 +21,7 @@ class NonMuslimTopicsScreen extends GetView<NonMuslimController> {
       backgroundColor: AppColors.kPrimaryColor,
       body: CustomScrollView(
         slivers: [
-          SliverAppBarWidget(
-            // isSearch: true,
-            title: title,
-            isPinned: true,
-          ),
+          Custom_AppBar(title: title),
           SliverToBoxAdapter(
             child: Container(
               height: MediaQuery.of(context).size.height - 100,

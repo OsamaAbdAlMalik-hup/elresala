@@ -19,6 +19,7 @@ import 'package:elresala/features/quran/presentation/screens/quran_screen.dart';
 import 'package:elresala/features/quran/presentation/screens/surah_screen.dart';
 import 'package:elresala/features/quran/presentation/screens/telawa_screen.dart';
 import 'package:elresala/features/quran/quran_bindings.dart';
+import 'package:elresala/features/sites/presentation/screen/the_key_to_islam_screen.dart';
 import 'package:get/get.dart';
 
 import '../../features/hadith/presentation/screens/content_hadith_screen.dart';
@@ -44,6 +45,8 @@ import '../../features/sites/bindings/mohammad_messanger_banding.dart';
 import '../../features/sites/bindings/rasuluallah_banding.dart';
 import '../../features/sites/bindings/romance_banding.dart';
 import '../../features/sites/bindings/terminology_banding.dart';
+import '../../features/sites/bindings/the_key_to_islam_2_binding.dart';
+import '../../features/sites/bindings/the_key_to_islam_binding.dart';
 import '../../features/sites/bindings/women_banding.dart';
 import '../../features/sites/presentation/screen/beginning_screen.dart';
 import '../../features/sites/presentation/screen/bidaa_in_islam_screen.dart';
@@ -67,6 +70,7 @@ import '../../features/sites/presentation/screen/mohammad_messanger_screen.dart'
 import '../../features/sites/presentation/screen/rasul_uallah/rasul_uallah_screen.dart';
 import '../../features/sites/presentation/screen/romance_screen.dart';
 import '../../features/sites/presentation/screen/terminolgy_screen.dart';
+import '../../features/sites/presentation/screen/the_key_to_islam_2_screen.dart';
 import '../../features/sites/presentation/screen/woman_screen.dart';
 
 abstract class AppPagesRoutes {
@@ -113,6 +117,8 @@ abstract class AppPagesRoutes {
   static const String firstSteps = "/first_steps_screen";
   static const String bidaaInIslam = "/bidaa_in_islam_screen";
   static const String terminology = "/terminology_screen";
+  static const String thekeytoislam = "/the_key_to_islam";
+  static const String thekeytoislam2 = "/the_key_to_islam_2";
 
   static List<GetPage<dynamic>> appPages = [
     GetPage(
@@ -147,6 +153,20 @@ abstract class AppPagesRoutes {
       name: advanced_learning,
       page: () => const AdvancedSites(),
       binding: Advanced_LearningBindings(),
+      transition: Transition.cupertino,
+    ),
+
+    GetPage(
+      name: thekeytoislam,
+      page: () => const TheKeyToIslamScreen(),
+      binding: TheKeyToIslamBindings(),
+      transition: Transition.cupertino,
+    ),
+
+    GetPage(
+      name: thekeytoislam2,
+      page: () => const TheKeyToIslam2Screen(),
+      binding: TheKeyToIslam2Bindings(),
       transition: Transition.cupertino,
     ),
     GetPage(

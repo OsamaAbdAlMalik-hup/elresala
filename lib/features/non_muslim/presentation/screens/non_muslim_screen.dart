@@ -1,8 +1,10 @@
 import 'package:elresala/core/constants/app_colors.dart';
 import 'package:elresala/core/styles/text_styles.dart';
 import 'package:elresala/core/utils/components/appbar/build_sliver_appbar.dart';
+import 'package:elresala/features/advanced_learning/presentation/widgets/custom_appBar.dart';
 import 'package:elresala/features/non_muslim/presentation/controller/non_muslim_controller.dart';
 import 'package:elresala/features/non_muslim/presentation/screens/non_muslim_topic_screen.dart';
+import 'package:elresala/features/sites/presentation/widget/app_bar_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,11 +17,7 @@ class NonMuslimSectionScreen extends GetView<NonMuslimController> {
       backgroundColor: AppColors.kPrimaryColor,
       body: CustomScrollView(
         slivers: [
-          const SliverAppBarWidget(
-            title: 'Courses for Non Muslims',
-            // isSearch: true,
-            isPinned: true,
-          ),
+          const Custom_AppBar(title: 'Courses for Non Muslims'),
           SliverToBoxAdapter(
             child: Container(
               decoration: BoxDecoration(

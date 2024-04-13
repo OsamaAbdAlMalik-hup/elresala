@@ -30,7 +30,7 @@ class AdvancedSites extends StatelessWidget {
                   //
                   Container(
                     padding: EdgeInsets.only(top: 10),
-                    height: Get.height/13,
+                    height: Get.height / 13,
                     child: Item_GridView(),
                   ),
 
@@ -47,7 +47,10 @@ class AdvancedSites extends StatelessWidget {
                         child: ListView.builder(
                           shrinkWrap: true,
                           padding: EdgeInsets.only(
-                              left: 10, right: 10, top: 10, bottom: 60),
+                              left: 10,
+                              right: 10,
+                              top: 10,
+                              bottom: Get.height / 4),
                           itemCount:
                               controller.page[controller.selectedPart].length,
                           itemBuilder: (context, index) {

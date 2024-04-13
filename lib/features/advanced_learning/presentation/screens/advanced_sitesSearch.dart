@@ -56,10 +56,16 @@ class _Advanced_Sites_SearchState extends State<Advanced_Sites_Search> {
                     ),
                     child: ListView.builder(
                       shrinkWrap: true,
-                      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: MediaQuery.of(context).size.height),
+                      padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          top: 10,
+                          bottom: MediaQuery.of(context).size.height),
                       itemCount: 10,
                       itemBuilder: (context, index) {
-                        return const Item_Card(titleSite: '',);
+                        return Item_Card(
+                          titleSite: '',
+                        );
                       },
                     ),
                   ),

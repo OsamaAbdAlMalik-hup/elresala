@@ -2,17 +2,17 @@ import 'package:elresala/core/constants/app_assets.dart';
 import 'package:elresala/core/constants/app_colors.dart';
 import 'package:elresala/core/styles/text_styles.dart';
 import 'package:elresala/core/utils/components/appbar/direction_aware.dart';
-import 'package:elresala/features/telegram_channels/data/models/telegram_channels_model.dart';
 import 'package:elresala/features/telegram_channels/presentation/controller/telegram_channels_controller.dart';
 import 'package:elresala/features/telegram_channels/presentation/widgets/telegram_messages_search_delegate.dart';
 import 'package:flutter/material.dart';
+import 'package:elresala/features/telegram_channels/data/models/telegram_channels_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController> {
+class TelegramChannelsMessagesScreen
+    extends GetView<TelegramChannelsController> {
   final TelegramChannel channelMessages;
   final String channelName;
-
   const TelegramChannelsMessagesScreen({
     super.key,
     required this.channelMessages,
@@ -22,13 +22,15 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kWhiteColor,
+      backgroundColor: AppColors.kPrimaryColor,
       appBar: AppBar(
         title: Row(
           children: [
+            const CircleAvatar(),
+            const SizedBox(),
             Text(
               channelName,
-              style: Styles.textStyle18Godlen,
+              style: Styles.textStyle20Golden,
             ),
           ],
         ),
@@ -58,14 +60,15 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: TelegramMessagesSearcDelegate(channelMessages: channelMessages.messages.values.toList()),
+                  delegate: TelegramMessagesSearcDelegate(
+                      channelMessages:
+                          channelMessages.messages.values.toList()),
                 );
               },
               icon: const Icon(Icons.search))
         ],
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         reverse: true,
         itemCount: channelMessages.messages.length,
         itemBuilder: (BuildContext context, int index) {
@@ -82,7 +85,10 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
               children: [
                 ListTile(
                   title: Text(
-                    channelMessages.messages.values.toList().reversed.toList()[index],
+                    channelMessages.messages.values
+                        .toList()
+                        .reversed
+                        .toList()[index],
                     style: Styles.textStyle14Golden,
                   ),
                 ),
@@ -93,7 +99,7 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
                       onPressed: () {},
                       icon: IconButton(
                         icon: SvgPicture.asset(
-                          AppAssets.kCopyIcon,
+                          AppAssets.copy,
                         ),
                         onPressed: () {},
                       ),
@@ -102,7 +108,7 @@ class TelegramChannelsMessagesScreen extends GetView<TelegramChannelsController>
                       onPressed: () {},
                       icon: IconButton(
                         icon: SvgPicture.asset(
-                          AppAssets.kShareIcon,
+                          AppAssets.share,
                           color: AppColors.kGoldenColor,
                         ),
                         onPressed: () {},

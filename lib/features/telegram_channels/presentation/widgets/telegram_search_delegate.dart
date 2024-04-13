@@ -1,18 +1,17 @@
+import 'package:elresala/features/telegram_channels/presentation/screens/telegram_channels_messages_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:elresala/core/constants/app_assets.dart';
 import 'package:elresala/core/constants/app_colors.dart';
 import 'package:elresala/core/styles/text_styles.dart';
 import 'package:elresala/core/utils/components/appbar/direction_aware.dart';
 import 'package:elresala/features/telegram_channels/data/models/telegram_channels_model.dart';
-import 'package:elresala/features/telegram_channels/presentation/screens/telegram_channels_messages_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class TelegramSearchDelegate extends SearchDelegate {
   final List channelsNameList;
   final List<TelegramChannel> channelMessagesList;
   List? channelsNameFilterList;
-
   // List? channelsMessagesFilterList;
   TelegramSearchDelegate(
       {super.searchFieldLabel,
@@ -32,7 +31,7 @@ class TelegramSearchDelegate extends SearchDelegate {
           onPressed: () {
             query = '';
           },
-          icon: const Icon(Icons.close),
+          icon: Icon(Icons.close),
         ),
       ),
     ];
@@ -154,7 +153,7 @@ class TelegramSearchDelegate extends SearchDelegate {
       builder: (context) {
         if (query == '') {
           return Scaffold(
-            backgroundColor: AppColors.kWhiteColor,
+            backgroundColor: AppColors.kPrimaryColor,
             body: ListView.builder(
               itemCount: channelsNameList.length,
               shrinkWrap: true,
@@ -171,15 +170,14 @@ class TelegramSearchDelegate extends SearchDelegate {
                   },
                   child: Card(
                     elevation: 0,
-                    color: AppColors.kGreenColor,
+                    color: AppColors.kPrimaryColor,
                     child: ListTile(
                       //  isThreeLine: true,
                       title: Text(
                         channelsNameList[index],
                         style: Styles.textStyle18Godlen,
                       ),
-                      leading: const CircleAvatar(
-                        backgroundImage: AssetImage('assets/svg/images/zaghrafa.png'),
+                      leading: CircleAvatar(
                         backgroundColor: AppColors.kGreenColor,
                       ),
                       subtitle: Text(
@@ -192,7 +190,7 @@ class TelegramSearchDelegate extends SearchDelegate {
                         width: 35,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.kPrimaryColor,
+                          color: AppColors.kGreenColor,
                         ),
                         child: Center(
                           child: Text(
@@ -208,9 +206,11 @@ class TelegramSearchDelegate extends SearchDelegate {
             ),
           );
         } else {
-          channelsNameFilterList = channelsNameList.where((element) => element.contains(query)).toList();
+          channelsNameFilterList = channelsNameList
+              .where((element) => element.contains(query))
+              .toList();
           return Scaffold(
-            backgroundColor: AppColors.kWhiteColor,
+            backgroundColor: AppColors.kPrimaryColor,
             body: ListView.builder(
               itemCount: channelsNameFilterList!.length,
               shrinkWrap: true,
@@ -227,15 +227,14 @@ class TelegramSearchDelegate extends SearchDelegate {
                   },
                   child: Card(
                     elevation: 0,
-                    color: AppColors.kGreenColor,
+                    color: AppColors.kPrimaryColor,
                     child: ListTile(
                       //  isThreeLine: true,
                       title: Text(
                         channelsNameFilterList![index],
                         style: Styles.textStyle18Godlen,
                       ),
-                      leading: const CircleAvatar(
-                        backgroundImage: AssetImage('assets/svg/images/zaghrafa.png'),
+                      leading: CircleAvatar(
                         backgroundColor: AppColors.kGreenColor,
                       ),
                       subtitle: Text(
@@ -248,7 +247,7 @@ class TelegramSearchDelegate extends SearchDelegate {
                         width: 35,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors.kPrimaryColor,
+                          color: AppColors.kGreenColor,
                         ),
                         child: Center(
                           child: Text(
